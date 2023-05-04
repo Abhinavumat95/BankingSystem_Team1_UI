@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { RegistrationComponent } from './registration/registration.component';
+
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
 import { SecurityQuestionMismatchComponent } from './security-question-mismatch/security-question-mismatch.component';
@@ -31,12 +31,15 @@ import { TransferComponent } from './transfer/transfer.component';
 import { ByAccountNumberComponent } from './by-account-number/by-account-number.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CustomerRegistrationComponent } from './customer-registration/customer-registration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    RegistrationComponent,
+    CustomerRegistrationComponent,
     ForgetPasswordComponent,
     UpdatePasswordComponent,
     SecurityQuestionMismatchComponent,
@@ -66,6 +69,10 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
