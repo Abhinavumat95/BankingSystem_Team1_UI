@@ -1,15 +1,16 @@
 <div class="middle">
     <div class="form">
         <h1>Register Here</h1>
-        <form [formGroup]="customerForm" (ngSubmit)="customerMethod()">
+        <form [formGroup]="adminForm" (ngSubmit)="admin()">
             <input type="text" placeholder="Username" formControlName="username" /><br><br>
             <input type="text" placeholder="Fullname" formControlName="fullname" /><br><br>
             <input type="password" placeholder="Password" formControlName="password" /><br><br>
             <input type="password" placeholder="Confirm Password" formControlName="confirmPassword" />
             <br><br>
             <button class="button" type="submit">Register</button><br><br>
-            <h2>Already have an Customer account <a href="home" class="atag">LOGIN HERE</a>
+            <h2>Already have an Super Admin account <a href="adminlogin" class="atag">LOGIN HERE</a>
             </h2>
         </form>
     </div>
 </div>
+

@@ -14,6 +14,9 @@ h2 {
 .atag {
     font-size: 25px;
 }
+.form {
+    padding-top: 5%;
+}
   
   form {
     position: relative;
