@@ -1,1 +1,48 @@
-<p>admin-view works!</p>
+<div class="middle">
+    <div class="adminButtons">
+        <button class="button1" type="submit" (click)="goToCreateStaff()">Create Staff</button>
+        &nbsp;&nbsp;&nbsp;
+        <button class="button2" type="submit" (click)="viewStaff()">View Staffs</button>
+        &nbsp;&nbsp;&nbsp;
+        <button class="button3" type="submit" (click)="deleteToken()">Logout</button>
+    </div>
+
+    <div *ngIf="!staffView">
+        <br><br>
+        <form [formGroup]="createStaffForm" (ngSubmit)="createStaff()">
+            <input type="text" placeholder="Enter Staff Name" formControlName="fullname" /><br><br>
+            <input type="text" placeholder="Enter Staff UserName" formControlName="username" /><br><br>
+            <input type="password" placeholder="Enter Password" formControlName="password" />
+            <br><br>
+            <input type="password" placeholder="Re Enter Password" formControlName="confirmPassword" />
+            <br><br>
+            <button class="button" type="submit">Create</button><br><br>
+        </form>
+    </div>
+
+    <div class="staffTable" *ngIf="staffView">
+        <br><br>
+        <table>
+            <tr class="row1">
+                <th></th>
+                <th style="font-size: 30px;">
+                    Enable or Disable Customer
+                </th>
+                <th></th>
+            </tr>
+            <tr class="row2">
+                <th style="font-size: 20px;">Staff Name</th>
+                <th style="font-size: 20px;">Staff Username</th>
+                <th style="font-size: 20px;">Enable Disable</th>
+            </tr>
+            <tr *ngFor="let staff of staffs" class="row2">
+                <td>{{staff.fullname}}</td>
+                <td>{{staff.username}}</td>
+                <td>
+                    <mat-slide-toggle [(ngModel)]="checked" class="example-margin"
+                        (change)="enabledOrDisableStaffMember(staff.username)">
+                    </mat-slide-toggle>
+                </td>
+            </tr>
+        </table>
+    </div>

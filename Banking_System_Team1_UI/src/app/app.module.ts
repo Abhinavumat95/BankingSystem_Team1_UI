@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { UiSwitchModule } from 'ngx-ui-switch';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CustomerRegistrationComponent } from './customer-registration/customer-registration.component';
 import { SuperAdminLoginComponent } from './super-admin-login/super-admin-login.component';
 import { SuperAdminRegisterComponent } from './super-admin-register/super-admin-register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,10 @@ import { SuperAdminRegisterComponent } from './super-admin-register/super-admin-
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    UiSwitchModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

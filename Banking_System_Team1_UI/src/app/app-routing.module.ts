@@ -6,6 +6,11 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { CustomerRegistrationComponent } from './customer-registration/customer-registration.component';
 import { SuperAdminLoginComponent } from './super-admin-login/super-admin-login.component';
 import { SuperAdminRegisterComponent } from './super-admin-register/super-admin-register.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
+import { SecurityQuestionMismatchComponent } from './security-question-mismatch/security-question-mismatch.component';
+import { CreateStaffComponent } from './create-staff/create-staff.component';
+import { StaffViewComponent } from './staff-view/staff-view.component';
+import { AdminViewComponent } from './admin-view/admin-view.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -14,7 +19,12 @@ const routes: Routes = [
   {path: 'adminlogin', component: SuperAdminLoginComponent},
   {path: 'adminregister', component: SuperAdminRegisterComponent},
   {path: 'forgetpassword', component: ForgetPasswordComponent},
+  {path: 'updatepassword', component: UpdatePasswordComponent},
   {path: 'customerregister', component: CustomerRegistrationComponent},
+  {path: 'security', component: SecurityQuestionMismatchComponent},
+  {path: 'createstaff', component: CreateStaffComponent},
+  {path: 'viewstaff', component: StaffViewComponent},
+  {path: 'adminview', component: AdminViewComponent},
   {path: '**', component: HomeComponent},
 ];
 

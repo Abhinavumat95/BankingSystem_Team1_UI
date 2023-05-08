@@ -1,1 +1,38 @@
-<p>staff-view works!</p>
+<div class="middle">
+    <div class="adminButtons">
+    <button class="button1" type="submit" (click)="goToCreateStaff()">Create Staff</button>
+    &nbsp;&nbsp;&nbsp;
+    <button class="button2" type="submit" (click)="viewStaffMembers()">View Staffs</button>
+    &nbsp;&nbsp;&nbsp;
+    <button class="button3" type="submit" (click)="deleteToken()">Logout</button>
+</div>
+
+<div class="staffTable">
+        <table>
+            <tr>
+            <th>
+                Enable or Disable Customer
+            </th>
+            </tr>
+            <tr>
+                <th>Staff Name</th>
+                &nbsp;&nbsp;&nbsp;
+                <th>Staff Username</th>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <th>Enable Disable</th>
+
+            </tr>
+            <tr *ngFor="let staff of staffs">
+                <td scope="row">#</td>
+                <td>{{staff.fullname}}</td>
+                <td>{{staff.username}}</td>
+                <td> <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
+                </td>
+            </tr>
+
+
+        </table>
+</div>

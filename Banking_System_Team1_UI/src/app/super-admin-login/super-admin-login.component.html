@@ -1,7 +1,7 @@
 <div class="middle">
     <div class="form">
         <h1>Login as Admin</h1>
-        <form>
+        <form [formGroup]="adminLoginForm" (ngSubmit)="admin()">
             <input type="text" placeholder="Enter Username" formControlName="username" /><br><br>
             <input type="password" placeholder="Enter Password" formControlName="password" />
             <br><br>
@@ -12,4 +12,5 @@
     </div>
 </div>
 
-
+<h1>Admin token</h1>
+{{dataV}}

@@ -9,19 +9,32 @@ import { SuperAdminService } from '../super-admin.service';
   templateUrl: './super-admin-register.component.html',
   styleUrls: ['./super-admin-register.component.css']
 })
-export class SuperAdminRegisterComponent implements OnInit{
+export class SuperAdminRegisterComponent implements OnInit {
 
-  SuperAdmin:any;
+  SuperAdmin: any;
+  submitted = false;
 
   superAdmin: SuperAdmin = new SuperAdmin();
 
   adminForm = new FormGroup({
 
-    username: new FormControl('', [Validators.required]),
+    username: new FormControl('',
+      [Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(20)]),
     fullname: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required,]),
-    confirmPassword: new FormControl('', [Validators.required]),
-  });
+    password: new FormControl('',
+      [Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(40)]),
+    confirmPassword: new FormControl('',
+      [Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(40)]),
+  },
+
+
+  );
 
   get f() {
     return this.adminForm.controls;
@@ -29,7 +42,7 @@ export class SuperAdminRegisterComponent implements OnInit{
 
   admin() {
 
-    this.superAdmin.username = this.f['username'].value;    
+    this.superAdmin.username = this.f['username'].value;
     this.superAdmin.fullname = this.f['fullname'].value;
     this.superAdmin.password = this.f['password'].value;
     //this.superAdmin.confirmPassword = this.f['confirmPassword'].value;
@@ -37,6 +50,8 @@ export class SuperAdminRegisterComponent implements OnInit{
     this.superAdmin.enabled = true;
 
     console.log(this.superAdmin.id)
+
+    this.submitted = true;
 
     this.adminRegister();
 
@@ -49,13 +64,13 @@ export class SuperAdminRegisterComponent implements OnInit{
   constructor(private superAdminService: SuperAdminService, private router: Router) { }
 
   ngOnInit(): void {
-    
+
   }
 
   adminRegister() {
     this.superAdminService.adminSignUp(this.superAdmin)
       .subscribe(data => console.log(data), error => console.log(error));
-      console.log("Admin Register implemented succesfully")
+    console.log("Admin Register implemented succesfully")
   }
 
 }
