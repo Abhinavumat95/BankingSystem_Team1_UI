@@ -6,4 +6,8 @@ export class Customer {
     password:any;
     fullname:any;
     confirmPassword:any;
+    question:any;
+    answer:any;
+    pan:any;
+    phone:any;
 }

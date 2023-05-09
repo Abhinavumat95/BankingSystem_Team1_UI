@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Customer } from '../customer';
+import { CustomerService } from '../customer.service';
 
 @Component({
   selector: 'app-update-password',
@@ -8,11 +10,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./update-password.component.css']
 })
 export class UpdatePasswordComponent implements OnInit{
-  ngOnInit(): void {
-    
-  }
-
+  
   submitted = false;
+  customerInfo:any;
+  noCustomer = false;
+  updateCustomer:any;
+  notRightCustomer = false;
+  updatedSuccessfully = false;
+
+  customer: Customer = new Customer();
 
   updatePasswordForm = new FormGroup({
 
@@ -36,12 +42,50 @@ export class UpdatePasswordComponent implements OnInit{
     return this.updatePasswordForm.controls;
   }
   
+
   updatePassword() {
+    this.customer.username = this.f['username'].value;
+    this.customer.password = this.f['password'].value;
+    this.customer.confirmPassword = this.f['confirmPassword'].value;
     this.submitted = true;
+
+    this.updateCustomer = sessionStorage.getItem("forgotPasswordCustomer");
+
+
+    if(this.updateCustomer != this.customer.username){
+      console.log("Update Customer = ",this.updateCustomer);
+      console.log("Actual Customer = ",this.customer.username);
+      this.notRightCustomer = true;
+      this.router.navigate(['/updatepassword']);
+    }else{
+      this.updateCustomerPassword();
+    } 
   }
 
+  constructor(private customerService: CustomerService, private router: Router) { }
+  ngOnInit(): void {
+    
+  }
 
+  updateCustomerPassword() {
 
-  constructor(private router: Router) { }
+    let body = {
+      username: this.customer.username,
+      password: this.customer.password
+    }
+    console.log("Username = ",this.customer.username)
+    console.log("New password = ",this.customer.password)
+    this.customerService.updatePassword(body)
+    .subscribe(data => {
+      console.log(data);
+      sessionStorage.removeItem("forgotPasswordCustomer");
+      this.updatedSuccessfully = true;
+    }, 
+    error => {
+      console.log(error),
+      this.router.navigate(['/updatepassword']);
+      this.noCustomer = true;
+    });
+  }
 
 }

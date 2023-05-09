@@ -13,13 +13,14 @@ export class AdminViewComponent implements OnInit{
 
   staff: Staff = new Staff();
   submitted: any;
+  staffCreated = false;
   staffs:any;
   staffView:any;
   isSwitchedOn = false;
   isSwitchedOff = false;
   e: any;
-  checked: any;
-  disabled = false;
+  checked = false;
+  disabled = true;
 
   createStaffForm = new FormGroup({
 
@@ -99,20 +100,23 @@ export class AdminViewComponent implements OnInit{
 
   ngOnInit(): void {
     this.staffView = false;
-    this.checked = false;
+    //this.checked = false;
     //this.isSwitchedOn = false;
   }
 
   deleteToken()
   {
-    localStorage.removeItem('AdminToken'); 
+    sessionStorage.removeItem('AdminToken'); 
     this.router.navigate(['/adminlogin']);
   }
 
 
   createStaffMember() {
     this.superAdminService.createStaff(this.staff)
-      .subscribe((data: any) => console.log(data), (error: any) => console.log(error));
+      .subscribe(
+        (data: any) => console.log(data), 
+        (error: any) => console.log(error));
+    this.staffCreated = true;
     console.log("Staff Created succesfully")
   }
 
@@ -136,12 +140,14 @@ export class AdminViewComponent implements OnInit{
 
   enabledOrDisableStaffMember(username: any) {
     
-    if (this.checked) {
+    var checked = "checked" + username;
+    if (this.checked === false) {
+       this.checked = true;
        var e = true;
        
     }else {
+       this.checked = false;
        var e = false;
-       
     }
     console.log("e = ",e)
 
@@ -154,11 +160,12 @@ export class AdminViewComponent implements OnInit{
     .subscribe(data => console.log(data), error => console.log(error));
   }
 
-  onValueChange() {
-    this.isSwitchedOff = true;
-    this.isSwitchedOn = true;
-    console.log('onValueChange', this.isSwitchedOn);
-    console.log('onValueChange', this.isSwitchedOff);
+  onChange() {
+    if (this.checked === true) {
+      this.checked = false;
+    } else {
+      this.checked = true;
+    }
   }
 
 }

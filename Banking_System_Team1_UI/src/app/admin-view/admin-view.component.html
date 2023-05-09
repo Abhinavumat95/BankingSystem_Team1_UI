@@ -8,17 +8,116 @@
     </div>
 
     <div *ngIf="!staffView">
+        <div *ngIf="!staffCreated">
         <br><br>
         <form [formGroup]="createStaffForm" (ngSubmit)="createStaff()">
-            <input type="text" placeholder="Enter Staff Name" formControlName="fullname" /><br><br>
-            <input type="text" placeholder="Enter Staff UserName" formControlName="username" /><br><br>
-            <input type="password" placeholder="Enter Password" formControlName="password" />
-            <br><br>
-            <input type="password" placeholder="Re Enter Password" formControlName="confirmPassword" />
-            <br><br>
+            <div class="form-group">
+                <input type="text" formControlName="fullname" class="form-control" placeholder="Fullname"
+                    [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }" />
+                <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback">
+                    <div *ngIf="f.fullname.errors?.['required']">Fullname is required</div>
+                </div>
+            </div><br>
+            <div class="form-group">
+                <input type="text" formControlName="username" class="form-control" placeholder="Username"
+                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors?.['required']">Username is required</div>
+                    <div *ngIf="f.username.errors?.['minlength']">
+                        Username must be at least 6 characters
+                    </div>
+                    <div *ngIf="f.username.errors?.['maxlength']">
+                        Username must not exceed 20 characters
+                    </div>
+                </div>
+            </div><br>
+            <div class="form-group">
+                <input type="password" formControlName="password" class="form-control" placeholder="Password"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors?.['required']">Password is required</div>
+                    <div *ngIf="f.password.errors?.['minlength']">
+                        Password must be at least 6 characters
+                    </div>
+                    <div *ngIf="f.password.errors?.['maxlength']">
+                        Password must not exceed 40 characters
+                    </div>
+                </div>
+            </div><br>
+            <div class="form-group">
+                <input type="password" formControlName="confirmPassword" class="form-control"
+                    placeholder="Confirm Password"
+                    [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                    <div *ngIf="f.confirmPassword.errors?.['required']">Password is required</div>
+                    <div *ngIf="f.confirmPassword.errors?.['minlength']">
+                        Password must be at least 6 characters
+                    </div>
+                    <div *ngIf="f.confirmPassword.errors?.['maxlength']">
+                        Password must not exceed 40 characters
+                    </div>
+                </div>
+            </div><br>
             <button class="button" type="submit">Create</button><br><br>
         </form>
     </div>
+    <div *ngIf="staffCreated">
+        <br><br>
+        <form [formGroup]="createStaffForm" (ngSubmit)="createStaff()">
+            <h3>Staff created succesfully</h3>
+            <div class="form-group">
+                <input type="text" formControlName="fullname" class="form-control" placeholder="Fullname"
+                    [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }" />
+                <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback">
+                    <div *ngIf="f.fullname.errors?.['required']">Fullname is required</div>
+                </div>
+            </div><br>
+            <div class="form-group">
+                <input type="text" formControlName="username" class="form-control" placeholder="Username"
+                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors?.['required']">Username is required</div>
+                    <div *ngIf="f.username.errors?.['minlength']">
+                        Username must be at least 6 characters
+                    </div>
+                    <div *ngIf="f.username.errors?.['maxlength']">
+                        Username must not exceed 20 characters
+                    </div>
+                </div>
+            </div><br>
+            <div class="form-group">
+                <input type="password" formControlName="password" class="form-control" placeholder="Password"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors?.['required']">Password is required</div>
+                    <div *ngIf="f.password.errors?.['minlength']">
+                        Password must be at least 6 characters
+                    </div>
+                    <div *ngIf="f.password.errors?.['maxlength']">
+                        Password must not exceed 40 characters
+                    </div>
+                </div>
+            </div><br>
+            <div class="form-group">
+                <input type="password" formControlName="confirmPassword" class="form-control"
+                    placeholder="Confirm Password"
+                    [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                    <div *ngIf="f.confirmPassword.errors?.['required']">Password is required</div>
+                    <div *ngIf="f.confirmPassword.errors?.['minlength']">
+                        Password must be at least 6 characters
+                    </div>
+                    <div *ngIf="f.confirmPassword.errors?.['maxlength']">
+                        Password must not exceed 40 characters
+                    </div>
+                </div>
+            </div><br>
+            <button class="button" type="submit">Create</button><br><br>
+        </form>
+    </div>
+    </div>
+
+    
 
     <div class="staffTable" *ngIf="staffView">
         <br><br>
@@ -35,14 +134,19 @@
                 <th style="font-size: 20px;">Staff Username</th>
                 <th style="font-size: 20px;">Enable Disable</th>
             </tr>
-            <tr *ngFor="let staff of staffs" class="row2">
+            <tr *ngFor="let staff of staffs; let i = index" class="row2">
                 <td>{{staff.fullname}}</td>
                 <td>{{staff.username}}</td>
+                <ng-container>
                 <td>
-                    <mat-slide-toggle [(ngModel)]="checked" class="example-margin"
-                        (change)="enabledOrDisableStaffMember(staff.username)">
+                    
+                    <mat-slide-toggle [checked]="checked" class="example-margin" 
+                    
+                        (click)="enabledOrDisableStaffMember(staff.username)">
                     </mat-slide-toggle>
+                
                 </td>
+            </ng-container>
             </tr>
         </table>
     </div>

@@ -22,7 +22,7 @@ export class SuperAdminService {
   }
 
   createStaff(SuperAdmin: object): Observable<object> {
-    var adminToken = localStorage.getItem('AdminToken');
+    var adminToken = sessionStorage.getItem('AdminToken');
     var headers_object = new HttpHeaders().set("Authorization", "Bearer " + adminToken);
     const httpOptions = {
       headers: headers_object
@@ -33,7 +33,7 @@ export class SuperAdminService {
   }
 
   viewStaff(): Observable<object> {
-    var adminToken = localStorage.getItem('AdminToken');
+    var adminToken = sessionStorage.getItem('AdminToken');
     var headers_object = new HttpHeaders().set("Authorization", "Bearer " + adminToken);
     const httpOptions = {
       headers: headers_object
@@ -44,7 +44,7 @@ export class SuperAdminService {
   }
 
   enableOrDisableStaff(data: any): Observable<object> {
-    var adminToken = localStorage.getItem('AdminToken');
+    var adminToken = sessionStorage.getItem('AdminToken');
     var headers_object = new HttpHeaders().set("Authorization", "Bearer " + adminToken);
     const httpOptions = {
       headers: headers_object

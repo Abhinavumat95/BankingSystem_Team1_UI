@@ -1,7 +1,187 @@
-<div class="middle">
+<div class="middle" *ngIf="match">
+    <div *ngIf="!adminCreated && !Error">
+        <div class="form">
+            <h1>Register Here</h1>
+            <form [formGroup]="adminForm" (ngSubmit)="admin()">
+                <div class="form-group">
+                    <input type="text" formControlName="username" class="form-control" placeholder="Username"
+                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors?.['required']">Username is required</div>
+                        <div *ngIf="f.username.errors?.['minlength']">
+                            Username must be at least 6 characters
+                        </div>
+                        <div *ngIf="f.username.errors?.['maxlength']">
+                            Username must not exceed 20 characters
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <input type="text" formControlName="fullname" class="form-control" placeholder="Fullname"
+                        [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }" />
+                    <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback">
+                        <div *ngIf="f.fullname.errors?.['required']">Fullname is required</div>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <input type="password" formControlName="password" class="form-control" placeholder="Password"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors?.['required']">Password is required</div>
+                        <div *ngIf="f.password.errors?.['minlength']">
+                            Password must be at least 6 characters
+                        </div>
+                        <div *ngIf="f.password.errors?.['maxlength']">
+                            Password must not exceed 40 characters
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <input type="password" formControlName="confirmPassword" class="form-control"
+                        placeholder="Confirm Password"
+                        [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.confirmPassword.errors?.['required']">Password is required</div>
+                        <div *ngIf="f.confirmPassword.errors?.['minlength']">
+                            Password must be at least 6 characters
+                        </div>
+                        <div *ngIf="f.confirmPassword.errors?.['maxlength']">
+                            Password must not exceed 40 characters
+                        </div>
+                    </div>
+                </div><br>
+                <br>
+                <button class="button" type="submit">Register</button><br><br>
+                <h2>Already have an Super Admin account <a href="adminlogin" class="atag">LOGIN HERE</a>
+                </h2>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="!Error && adminCreated">
+        <div class="form">
+            <h1>Register Here</h1>
+            <form [formGroup]="adminForm" (ngSubmit)="admin()">
+                <h3>Admin created succesfully</h3>
+                <div class="form-group">
+                    <input type="text" formControlName="username" class="form-control" placeholder="Username"
+                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors?.['required']">Username is required</div>
+                        <div *ngIf="f.username.errors?.['minlength']">
+                            Username must be at least 6 characters
+                        </div>
+                        <div *ngIf="f.username.errors?.['maxlength']">
+                            Username must not exceed 20 characters
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <input type="text" formControlName="fullname" class="form-control" placeholder="Fullname"
+                        [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }" />
+                    <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback">
+                        <div *ngIf="f.fullname.errors?.['required']">Fullname is required</div>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <input type="password" formControlName="password" class="form-control" placeholder="Password"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors?.['required']">Password is required</div>
+                        <div *ngIf="f.password.errors?.['minlength']">
+                            Password must be at least 6 characters
+                        </div>
+                        <div *ngIf="f.password.errors?.['maxlength']">
+                            Password must not exceed 40 characters
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <input type="password" formControlName="confirmPassword" class="form-control"
+                        placeholder="Confirm Password"
+                        [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.confirmPassword.errors?.['required']">Password is required</div>
+                        <div *ngIf="f.confirmPassword.errors?.['minlength']">
+                            Password must be at least 6 characters
+                        </div>
+                        <div *ngIf="f.confirmPassword.errors?.['maxlength']">
+                            Password must not exceed 40 characters
+                        </div>
+                    </div>
+                </div><br>
+                <br>
+                <button class="button" type="submit">Register</button><br><br>
+                <h2>Already have an Super Admin account <a href="adminlogin" class="atag">LOGIN HERE</a>
+                </h2>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="Error && !adminCreated">
+        <div class="form">
+            <h1>Register Here</h1>
+            <form [formGroup]="adminForm" (ngSubmit)="admin()">
+                <h3>{{registerError}}</h3>
+                <div class="form-group">
+                    <input type="text" formControlName="username" class="form-control" placeholder="Username"
+                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors?.['required']">Username is required</div>
+                        <div *ngIf="f.username.errors?.['minlength']">
+                            Username must be at least 6 characters
+                        </div>
+                        <div *ngIf="f.username.errors?.['maxlength']">
+                            Username must not exceed 20 characters
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <input type="text" formControlName="fullname" class="form-control" placeholder="Fullname"
+                        [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }" />
+                    <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback">
+                        <div *ngIf="f.fullname.errors?.['required']">Fullname is required</div>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <input type="password" formControlName="password" class="form-control" placeholder="Password"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors?.['required']">Password is required</div>
+                        <div *ngIf="f.password.errors?.['minlength']">
+                            Password must be at least 6 characters
+                        </div>
+                        <div *ngIf="f.password.errors?.['maxlength']">
+                            Password must not exceed 40 characters
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <input type="password" formControlName="confirmPassword" class="form-control"
+                        placeholder="Confirm Password"
+                        [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.confirmPassword.errors?.['required']">Password is required</div>
+                        <div *ngIf="f.confirmPassword.errors?.['minlength']">
+                            Password must be at least 6 characters
+                        </div>
+                        <div *ngIf="f.confirmPassword.errors?.['maxlength']">
+                            Password must not exceed 40 characters
+                        </div>
+                    </div>
+                </div><br>
+                <br>
+                <button class="button" type="submit">Register</button><br><br>
+                <h2>Already have an Super Admin account <a href="adminlogin" class="atag">LOGIN HERE</a>
+                </h2>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="middle" *ngIf="!match">
     <div class="form">
         <h1>Register Here</h1>
         <form [formGroup]="adminForm" (ngSubmit)="admin()">
+            <h3>Password and Confirm Password does not match</h3>
             <div class="form-group">
                 <input type="text" formControlName="username" class="form-control" placeholder="Username"
                     [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />

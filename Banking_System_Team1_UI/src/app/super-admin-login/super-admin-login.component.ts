@@ -14,19 +14,17 @@ export class SuperAdminLoginComponent implements OnInit{
   adminToken:any;
   SuperAdmin: any;
   submitted = false;
+  loginError:any;
+  notAuthorized = false;
 
   superAdmin: SuperAdmin = new SuperAdmin();
 
   adminLoginForm = new FormGroup({
 
     username: new FormControl('',
-      [Validators.required,
-      Validators.minLength(6),
-      Validators.maxLength(20)]),
+      [Validators.required]),
     password: new FormControl('',
-      [Validators.required,
-      Validators.minLength(6),
-      Validators.maxLength(40)]),
+      [Validators.required]),
    
   },
 
@@ -51,7 +49,8 @@ export class SuperAdminLoginComponent implements OnInit{
 
     this.adminLogin();
 
-    this.router.navigate(['/adminview']);
+    //this.router.navigate(['/adminview']);
+    
 
   }
 
@@ -68,15 +67,28 @@ export class SuperAdminLoginComponent implements OnInit{
 
   adminLogin() {
     this.superAdminService.adminLogin(this.superAdmin)
-      .subscribe(data => {console.log(data), this.adminToken = data; 
-        localStorage.setItem('AdminToken',this.adminToken.token);}, error => console.log(error));
+      .subscribe(data => 
+        {
+          console.log(data), 
+          this.adminToken = data;
+          sessionStorage.setItem('AdminToken',this.adminToken.token); 
+          this.router.navigate(['/adminview']);
+          this.notAuthorized = false;
+        }, 
+        error => {
+          this.loginError = error.error;
+          console.log("Error= ",this.loginError); 
+          this.router.navigate(['/adminlogin']);    
+          this.notAuthorized = true;
+      });
     console.log("Admin Login implemented succesfully")
-    console.log("Admin Jwt token =", this.dataV)
+    console.log("Authorization = ",this.notAuthorized)
+
   }
 
 
   get dataV(): any {
-    return localStorage.getItem('AdminToken'); //Get Global Variable Value
+    return sessionStorage.getItem('AdminToken'); //Get Global Variable Value
   }
 
 }

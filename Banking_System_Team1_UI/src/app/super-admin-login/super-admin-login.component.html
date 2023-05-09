@@ -1,10 +1,23 @@
-<div class="middle">
+<div class="middle" *ngIf="!notAuthorized">
     <div class="form">
         <h1>Login as Admin</h1>
         <form [formGroup]="adminLoginForm" (ngSubmit)="admin()">
-            <input type="text" placeholder="Enter Username" formControlName="username" /><br><br>
-            <input type="password" placeholder="Enter Password" formControlName="password" />
-            <br><br>
+            <div>
+                <input type="text" placeholder="Enter Username" formControlName="username"
+                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors">
+                    <div *ngIf="f.username.errors?.['required']">Username is required</div>
+                </div>
+            </div>
+            <br>
+            <div>
+                <input type="password" placeholder="Enter Password" formControlName="password"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors">
+                    <div *ngIf="f.password.errors?.['required']">Password is required</div>
+                </div>
+            </div>
+            <br>
             <button class="button" type="submit">Login</button><br><br>
             <h2>Not an Super Admin <a href="adminregister" class="atag">REGISTER HERE</a>
             </h2>
@@ -12,5 +25,30 @@
     </div>
 </div>
 
-<h1>Admin token</h1>
-{{dataV}}
+<div class="middle" *ngIf="notAuthorized">
+    <div class="form">
+        <h1>Login as Admin</h1>
+        <form [formGroup]="adminLoginForm" (ngSubmit)="admin()">
+            <h3>{{loginError}}</h3>
+            <div>
+                <input type="text" placeholder="Enter Username" formControlName="username"
+                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors">
+                    <div *ngIf="f.username.errors?.['required']">Username is required</div>
+                </div>
+            </div>
+            <br>
+            <div>
+                <input type="password" placeholder="Enter Password" formControlName="password"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors">
+                    <div *ngIf="f.password.errors?.['required']">Password is required</div>
+                </div>
+            </div>
+            <br>
+            <button class="button" type="submit">Login</button><br><br>
+            <h2>Not an Super Admin <a href="adminregister" class="atag">REGISTER HERE</a>
+            </h2>
+        </form>
+    </div>
+</div>

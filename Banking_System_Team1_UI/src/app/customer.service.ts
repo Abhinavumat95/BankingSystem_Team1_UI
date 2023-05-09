@@ -15,4 +15,14 @@ export class CustomerService {
     console.log("success");
     return this.http.post(`${this.baseUrl}/api/customer/register`, Customer);
   }
+
+  getCustomerSecurity(username: any): Observable<object> {
+    console.log("success");
+    return this.http.get(`${this.baseUrl}/api/util/customer/${username}`);
+  }
+
+  updatePassword(data: any): Observable<object> {
+    console.log("success");
+    return this.http.put(`${this.baseUrl}/api/util/customer/updatepassword`, data)
+  }
 }
