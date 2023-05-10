@@ -17,6 +17,9 @@ export class UpdatePasswordComponent implements OnInit{
   updateCustomer:any;
   notRightCustomer = false;
   updatedSuccessfully = false;
+  pass: any;
+  confPass: any;
+  match = true;
 
   customer: Customer = new Customer();
 
@@ -46,11 +49,14 @@ export class UpdatePasswordComponent implements OnInit{
   updatePassword() {
     this.customer.username = this.f['username'].value;
     this.customer.password = this.f['password'].value;
-    this.customer.confirmPassword = this.f['confirmPassword'].value;
+    this.confPass = this.f['confirmPassword'].value;
     this.submitted = true;
 
-    this.updateCustomer = sessionStorage.getItem("forgotPasswordCustomer");
+    this.pass = this.customer.password
+    console.log("Password = ", this.pass)
+    console.log("Confirm Password = ", this.confPass)
 
+    this.updateCustomer = sessionStorage.getItem("forgotPasswordCustomer");
 
     if(this.updateCustomer != this.customer.username){
       console.log("Update Customer = ",this.updateCustomer);
@@ -58,7 +64,13 @@ export class UpdatePasswordComponent implements OnInit{
       this.notRightCustomer = true;
       this.router.navigate(['/updatepassword']);
     }else{
-      this.updateCustomerPassword();
+      if (this.pass != this.confPass){
+        this.match = false;
+        this.submitted = true;
+        console.log("Match = ", this.match)   
+      }else{
+        this.updateCustomerPassword();
+      }
     } 
   }
 
@@ -80,6 +92,7 @@ export class UpdatePasswordComponent implements OnInit{
       console.log(data);
       sessionStorage.removeItem("forgotPasswordCustomer");
       this.updatedSuccessfully = true;
+      console.log("Updated Successfully = ",this.updatedSuccessfully)
     }, 
     error => {
       console.log(error),

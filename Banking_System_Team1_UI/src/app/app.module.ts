@@ -36,6 +36,7 @@ import { CustomerRegistrationComponent } from './customer-registration/customer-
 import { SuperAdminLoginComponent } from './super-admin-login/super-admin-login.component';
 import { SuperAdminRegisterComponent } from './super-admin-register/super-admin-register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminHeaderComponent } from './admin-header/admin-header.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeaderComponent,
     FooterComponent,
     SuperAdminLoginComponent,
-    SuperAdminRegisterComponent
+    SuperAdminRegisterComponent,
+    AdminHeaderComponent,
   ],
   imports: [
     BrowserModule,

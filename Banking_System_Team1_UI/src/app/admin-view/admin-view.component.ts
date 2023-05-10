@@ -16,11 +16,13 @@ export class AdminViewComponent implements OnInit{
   staffCreated = false;
   staffs:any;
   staffView:any;
-  isSwitchedOn = false;
-  isSwitchedOff = false;
   e: any;
+  confPass:any;
+  pass:any;
   checked = false;
-  disabled = true;
+  match = true;
+  registerError: any;
+  Error = false;
 
   createStaffForm = new FormGroup({
 
@@ -63,18 +65,33 @@ export class AdminViewComponent implements OnInit{
 
   createStaff() {
 
+    this.Error = false;
+    this.staffCreated = false;
+    this.match = true;
+
     this.staff.username = this.f['username'].value;
     this.staff.fullname = this.f['fullname'].value;
     this.staff.password = this.f['password'].value;
-    //this.superAdmin.confirmPassword = this.f['confirmPassword'].value;
+    this.confPass = this.f['confirmPassword'].value;
     this.staff.id = Math.floor(Math.random());
     this.staff.enabled = true;
 
-    console.log(this.staff.id)
+    this.pass = this.staff.password
 
-    this.submitted = true;
+    console.log("Password = ", this.pass)
+    console.log("Confirm Password = ", this.confPass)
 
-    this.createStaffMember();
+    if (this.pass == this.confPass) {
+      console.log(this.staff.id)
+      this.submitted = true;
+      this.createStaffMember();
+    } else {
+      this.match = false;
+      this.submitted = true;
+      console.log("Admin Created = ", this.staffCreated)
+      console.log("Match = ", this.match)
+      console.log("Error = ", this.Error)
+    }
 
   }
 
@@ -115,8 +132,24 @@ export class AdminViewComponent implements OnInit{
     this.superAdminService.createStaff(this.staff)
       .subscribe(
         (data: any) => console.log(data), 
-        (error: any) => console.log(error));
-    this.staffCreated = true;
+        (error: any) => {
+          console.log(error);
+          this.registerError = error.error;
+          var str = "Username: "+this.staff.username+" already exists.";
+          console.log("str = ",str);
+          console.log("Type of str = ",typeof(str));
+          console.log("Registered error = ",this.registerError);
+          console.log("Type of Registered error = ",typeof(this.registerError));
+          if(this.registerError !== str){
+            this.staffCreated = true;
+          }else{
+            this.Error = true;
+          }
+          console.log("Admin Created = ", this.staffCreated)
+          console.log("Match = ", this.match)
+          console.log("Error = ", this.Error)
+        });
+    //this.staffCreated = true;
     console.log("Staff Created succesfully")
   }
 
@@ -140,7 +173,6 @@ export class AdminViewComponent implements OnInit{
 
   enabledOrDisableStaffMember(username: any) {
     
-    var checked = "checked" + username;
     if (this.checked === false) {
        this.checked = true;
        var e = true;
@@ -158,6 +190,7 @@ export class AdminViewComponent implements OnInit{
     console.log("Username = ",username)
     this.superAdminService.enableOrDisableStaff(body)
     .subscribe(data => console.log(data), error => console.log(error));
+    this.goToViewStaff();
   }
 
   onChange() {

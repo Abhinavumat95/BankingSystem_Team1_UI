@@ -72,6 +72,7 @@ export class SuperAdminLoginComponent implements OnInit{
           console.log(data), 
           this.adminToken = data;
           sessionStorage.setItem('AdminToken',this.adminToken.token); 
+          sessionStorage.setItem('AdminUser',this.superAdmin.username); 
           this.router.navigate(['/adminview']);
           this.notAuthorized = false;
         }, 
@@ -83,6 +84,8 @@ export class SuperAdminLoginComponent implements OnInit{
       });
     console.log("Admin Login implemented succesfully")
     console.log("Authorization = ",this.notAuthorized)
+    // var jwt = sessionStorage.getItem('AdminToken');
+    // console.log("Jwt Token = ",jwt)
 
   }
 

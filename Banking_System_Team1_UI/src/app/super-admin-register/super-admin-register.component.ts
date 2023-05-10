@@ -16,9 +16,9 @@ export class SuperAdminRegisterComponent implements OnInit {
   match = true;
   pass: any;
   confPass: any;
-  adminCreated: any;
+  adminCreated = false;
   registerError: any;
-  Error: any;
+  Error = false;
 
   superAdmin: SuperAdmin = new SuperAdmin();
 
@@ -52,25 +52,30 @@ export class SuperAdminRegisterComponent implements OnInit {
     this.adminCreated = false;
     this.match = true;
 
+    sessionStorage.setItem("adminCreate", "false");
+    sessionStorage.setItem("errorCreate", "false");
+
     this.superAdmin.username = this.f['username'].value;
     this.superAdmin.fullname = this.f['fullname'].value;
     this.superAdmin.password = this.f['password'].value;
-    this.superAdmin.confirmPassword = this.f['confirmPassword'].value;
+    this.confPass = this.f['confirmPassword'].value;
     this.superAdmin.id = Math.floor(Math.random());
     this.superAdmin.enabled = true;
 
     this.pass = this.superAdmin.password
-    this.confPass = this.superAdmin.confirmPassword
     console.log("Password = ", this.pass)
     console.log("Confirm Password = ", this.confPass)
 
-    if(this.pass == this.confPass) {
+    if (this.pass == this.confPass) {
       console.log(this.superAdmin.id)
       this.submitted = true;
       this.adminRegister();
-    }else{
+    } else {
       this.match = false;
       this.submitted = true;
+      console.log("Admin Created = ", this.adminCreated)
+      console.log("Match = ", this.match)
+      console.log("Error = ", this.Error)
     }
 
   }
@@ -86,23 +91,33 @@ export class SuperAdminRegisterComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          //this.adminCreated = true;
-          sessionStorage.setItem("adminCreate", "true");
-          this.adminCreated = sessionStorage.getItem("adminCreate");
-        }, 
+        },
         error => {
           console.log(error);
           this.registerError = error.error;
-          this.Error = true;
-        
+          var str = "Username: "+this.superAdmin.username+" already exists.";
+          console.log("str = ",str);
+          console.log("Type of str = ",typeof(str));
+          console.log("Registered error = ",this.registerError);
+          console.log("Type of Registered error = ",typeof(this.registerError));
+          if(this.registerError !== str){
+            this.adminCreated = true;
+          }else{
+            this.Error = true;
+          }
+          console.log("Admin Created = ", this.adminCreated)
+          console.log("Match = ", this.match)
+          console.log("Error = ", this.Error)
+
+
         });
-        if(this.adminCreated == "true"){
-          this.adminCreated = true;
-        }else{
-          this.adminCreated = false;
-        }
-    //this.adminCreated = true;
+    
     console.log("Admin Register implemented succesfully")
+
   }
+
+
+
+
 
 }

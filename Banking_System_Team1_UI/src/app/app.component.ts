@@ -1,14 +1,29 @@
-import { Component, HostListener, OnDestroy} from '@angular/core';
+import { Component, HostListener} from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnDestroy{
-  ngOnDestroy(): void {
- 
-  }
+export class AppComponent {
+  title: any;
+  
+//   constructor(private router: Router) {
+//     this.router.events.subscribe((ev) => {
+//       if (ev instanceof NavigationEnd) {
+
+//         const user = sessionStorage.getItem("AdminToken");
+//         if (user != "null") {
+//             this.router.navigate(['adminview']);
+//       }
+//     }
+    
+//   })
+// }
+
+
+
 
   // @HostListener('window:beforeunload', ['$event'])
   // public beforeunloadHandler($event: any) {

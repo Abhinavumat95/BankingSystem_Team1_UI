@@ -54,10 +54,6 @@ export class CustomerRegistrationComponent implements OnInit {
 
   }
 
-  // private _id(_id: any) {
-  //   throw new Error('Method not implemented.');
-  // }
-
   constructor(private customerService: CustomerService, private router: Router) { }
 
   ngOnInit(): void {

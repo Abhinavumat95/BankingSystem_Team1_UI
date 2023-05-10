@@ -11,6 +11,7 @@ import { SecurityQuestionMismatchComponent } from './security-question-mismatch/
 import { CreateStaffComponent } from './create-staff/create-staff.component';
 import { StaffViewComponent } from './staff-view/staff-view.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
+import { AdminAuthGaurdService } from './admin-auth-gaurd.service';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,7 +25,7 @@ const routes: Routes = [
   {path: 'security', component: SecurityQuestionMismatchComponent},
   {path: 'createstaff', component: CreateStaffComponent},
   {path: 'viewstaff', component: StaffViewComponent},
-  {path: 'adminview', component: AdminViewComponent},
+  {path: 'adminview', component: AdminViewComponent, canActivate : [AdminAuthGaurdService]},
   {path: '**', component: HomeComponent},
 ];
 
