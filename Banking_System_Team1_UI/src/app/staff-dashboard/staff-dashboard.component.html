@@ -1,1 +1,67 @@
-<p>staff-dashboard works!</p>
+<header>
+    <app-staff-header></app-staff-header>
+</header>
+
+<div class="middle">
+    <div class="staffnav">
+        <button class="button2" type="submit" >By Account Number</button>
+        &nbsp;&nbsp;&nbsp;
+        <button class="button2" type="submit" (click)="goToApproveAccounts()">Approve Account</button>
+        &nbsp;&nbsp;&nbsp;
+        <button class="button2" type="submit" >Approve Beneficiary</button>
+        &nbsp;&nbsp;&nbsp;
+        <button class="button2" type="submit" >Enable/Block Customer</button>
+        &nbsp;&nbsp;&nbsp;
+</div>
+
+
+ <div *ngIf="clickViewAccount"> 
+
+    <!-- <app-approve-account></app-approve-account> -->
+
+    <div class="middle">
+    
+        <div class="staffTable" >
+            <br><br>
+            <table>
+                <tr class="row1">
+                    <th></th>
+                    <th style="font-size: 15px;">
+                        Enable or Disable Account
+                    </th>
+                    <th></th>
+                </tr>
+                <tr class="row2">
+                    <th style="font-size: 20px;">Account Number</th>
+                    <br>
+                    <th style="font-size: 20px;">Account Username</th>
+                    <br>
+                    <th style="font-size: 20px;">Enable/ Disable</th>
+                </tr>
+                <tr *ngFor="let account of accounts; let i = index" class="row2">
+                    
+                    <td>{{account[0]}}</td>  <!--- account number-->
+                    <br>
+                    <td>{{account[5].fullname}}</td> <!--- username -->
+                    <br>
+
+                    <ng-container>
+                    &nbsp;&nbsp;&nbsp;&nbsp;    
+                    <td>
+                        <mat-slide-toggle [checked]="checked" class="example-margin" >
+                    </mat-slide-toggle> 
+                          <!-- <mat-slide-toggle [checked]="checked" class="example-margin" 
+                        
+                            (click)="enabledOrDisableStaffMember(staff.username)">
+                        </mat-slide-toggle>  -->
+
+                    </td>
+                </ng-container>
+                </tr>
+            </table>
+        </div>
+    
+    </div>
+
+     
+</div>

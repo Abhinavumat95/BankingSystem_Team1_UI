@@ -38,6 +38,10 @@ import { SuperAdminRegisterComponent } from './super-admin-register/super-admin-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 
+import { StaffLoginComponent } from './staff-login/staff-login.component';
+import { StaffHeaderComponent } from './staff-header/staff-header.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +74,8 @@ import { AdminHeaderComponent } from './admin-header/admin-header.component';
     SuperAdminLoginComponent,
     SuperAdminRegisterComponent,
     AdminHeaderComponent,
+    StaffLoginComponent,
+    StaffHeaderComponent
   ],
   imports: [
     BrowserModule,

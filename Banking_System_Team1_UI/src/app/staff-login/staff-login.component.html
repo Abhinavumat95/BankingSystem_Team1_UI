@@ -1,0 +1,56 @@
+
+
+<div class="middle" *ngIf="!notAuthorized">
+    <div class="form">
+        <h1>Login As Staff</h1>
+        <form [formGroup]="staffLoginForm" (ngSubmit)="getStaff()">
+            <div>
+                <input type="text" placeholder="Enter Username" formControlName="username"
+                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors">
+                    <div *ngIf="f.username.errors?.['required']">Username is required</div>
+                </div>
+            </div>
+            <br>
+            <div>
+                <input type="password" placeholder="Enter Password" formControlName="password"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors">
+                    <div *ngIf="f.password.errors?.['required']">Password is required</div>
+                </div>
+            </div>
+            <br>
+            <button class="button" type="submit">Login</button><br><br>
+            <h2>Owing An Account With Us <a href="customerlogin" class="atag">LOGIN HERE</a>
+            </h2>
+        </form>
+    </div>
+</div>
+
+<div class="middle" *ngIf="notAuthorized">
+    <div class="form">
+        <h1>Login as Admin</h1>
+        <form [formGroup]="staffLoginForm" (ngSubmit)="getStaff()">
+            <h3>{{loginError}}</h3>
+            <div>
+                <input type="text" placeholder="Enter Username" formControlName="username"
+                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors">
+                    <div *ngIf="f.username.errors?.['required']">Username is required</div>
+                </div>
+            </div>
+            <br>
+            <div>
+                <input type="password" placeholder="Enter Password" formControlName="password"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors">
+                    <div *ngIf="f.password.errors?.['required']">Password is required</div>
+                </div>
+            </div>
+            <br>
+            <button class="button" type="submit">Login</button><br><br>
+            <h2>Owing An Account With Us <a href="customerlogin" class="atag">LOGIN HERE</a>
+            </h2>
+        </form>
+    </div>
+</div>

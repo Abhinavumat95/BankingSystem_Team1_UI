@@ -12,6 +12,8 @@ import { CreateStaffComponent } from './create-staff/create-staff.component';
 import { StaffViewComponent } from './staff-view/staff-view.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { AdminAuthGaurdService } from './admin-auth-gaurd.service';
+import { StaffDashboardComponent } from './staff-dashboard/staff-dashboard.component';
+
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -26,6 +28,8 @@ const routes: Routes = [
   {path: 'createstaff', component: CreateStaffComponent},
   {path: 'viewstaff', component: StaffViewComponent},
   {path: 'adminview', component: AdminViewComponent, canActivate : [AdminAuthGaurdService]},
+  {path: 'staffdashboard', component: StaffDashboardComponent},
+
   {path: '**', component: HomeComponent},
 ];
 
