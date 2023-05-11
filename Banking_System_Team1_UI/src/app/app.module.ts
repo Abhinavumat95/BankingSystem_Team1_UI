@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -86,7 +87,8 @@ import { StaffHeaderComponent } from './staff-header/staff-header.component';
     AppRoutingModule,
     UiSwitchModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

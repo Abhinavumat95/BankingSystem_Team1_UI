@@ -24,6 +24,9 @@ export class AdminViewComponent implements OnInit{
   registerError: any;
   Error = false;
 
+  pages: number = 1;
+
+
   createStaffForm = new FormGroup({
 
     username: new FormControl('',
@@ -53,6 +56,7 @@ export class AdminViewComponent implements OnInit{
    
   },
   );
+  
   
 
   get f() {
@@ -113,7 +117,9 @@ export class AdminViewComponent implements OnInit{
 
   }
 
-  constructor(private superAdminService: SuperAdminService, private router: Router) { }
+  constructor(private superAdminService: SuperAdminService, private router: Router) { 
+    
+  }
 
   ngOnInit(): void {
     this.staffView = false;
@@ -150,6 +156,7 @@ export class AdminViewComponent implements OnInit{
           console.log("Error = ", this.Error)
         });
     //this.staffCreated = true;
+    
     console.log("Staff Created succesfully")
   }
 
@@ -158,7 +165,7 @@ export class AdminViewComponent implements OnInit{
     .subscribe(data => {
       this.staffs = data;
       { { } }
-      console.log(this.staffs)
+      console.log(this.staffs);
 
     }, error => console.log(error));
   }

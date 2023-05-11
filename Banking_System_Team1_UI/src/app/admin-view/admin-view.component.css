@@ -145,8 +145,8 @@ td {
 }*/
 
 .tableContainer {
-  height: 550px;
-  overflow-y: scroll;
+  height: 750px;
+  /*overflow-y: scroll;*/
 }
 table {
     table-layout: fixed;
@@ -154,8 +154,8 @@ table {
     border: 1px solid red;
     margin-left: auto;
     margin-right: auto;
-    position: sticky;
-    top: 0;
+    /*position: sticky;
+    top: 0;*/
     
     
   }
@@ -251,4 +251,15 @@ td {
 }
 .example-margin {
   margin: 10px;
+}
+
+.page{
+  width:60%;
+  align-items: center;
+  align-content: center;
+  float: right;
+  padding-top: 2%;
+}
+.pagination-controls {
+  display: inline-block;
 }

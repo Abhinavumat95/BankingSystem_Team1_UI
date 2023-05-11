@@ -246,17 +246,22 @@
                 <th style="font-size: 20px;">Staff Username</th>
                 <th style="font-size: 20px;">Enable Disable</th>
             </tr>
-            <tr *ngFor="let staff of staffs; let i = index" class="row2">
+            <tr *ngFor="let staff of staffs | paginate: { itemsPerPage: 8, currentPage: pages }" class="row2">
                 <td>{{staff.fullname}}</td>
                 <td>{{staff.username}}</td>
                 <td>
                     <label class="switch">
                         <input type="checkbox">
-                        <span class="slider round"
-                        (click)="enabledOrDisableStaffMember(staff.username)">    
+                        <span class="slider round" (click)="enabledOrDisableStaffMember(staff.username)">
                         </span>
                     </label>
                 </td>
             </tr>
+            
+            
         </table>
+        <div class="page">
+            <pagination-controls (pageChange)="pages = $event"
+                ></pagination-controls>
+            </div>
     </div>
