@@ -31,7 +31,7 @@ const routes: Routes = [
   {path: 'viewstaff', component: StaffViewComponent},
   {path: 'adminview', component: AdminViewComponent, canActivate : [AdminAuthGaurdService]},
   {path: 'staffdashboard', component: StaffDashboardComponent},
-
+  
   {path: '**', component: HomeComponent},
 ];
 

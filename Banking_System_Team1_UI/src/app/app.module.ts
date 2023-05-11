@@ -41,6 +41,7 @@ import { AdminHeaderComponent } from './admin-header/admin-header.component';
 
 import { StaffLoginComponent } from './staff-login/staff-login.component';
 import { StaffHeaderComponent } from './staff-header/staff-header.component';
+import { StaffNavbarComponent } from './staff-navbar/staff-navbar.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import {MatRadioModule} from '@angular/material/radio';
 import { AlertModule } from 'ngx-bootstrap/alert';
@@ -84,6 +85,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     AdminHeaderComponent,
     StaffLoginComponent,
     StaffHeaderComponent,
+    StaffNavbarComponent,
     CustomerHeaderComponent
   ],
   imports: [

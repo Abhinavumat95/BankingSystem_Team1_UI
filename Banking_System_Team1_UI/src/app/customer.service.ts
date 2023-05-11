@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Transaction } from './transaction';
 import { CustomerInfo } from './customer-info';
 import { Beneficiary } from './beneficiary';
-import { Account } from './account';
+import { Account } from './entity/account';
 
 @Injectable({
   providedIn: 'root'

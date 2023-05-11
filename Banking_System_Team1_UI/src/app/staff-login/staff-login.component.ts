@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Staff } from '../staff';
-import { StaffService } from '../staff.service';
+import { StaffService } from '../services/staff.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -38,7 +38,7 @@ export class StaffLoginComponent {
     this.staff.username = this.f['username'].value;
     this.staff.password = this.f['password'].value;
 
-    console.log("staff id: ",this.staff.id);
+    console.log("staff username: ",this.staff.username);
     this.submitted = true;
     this.staffLogin();
 

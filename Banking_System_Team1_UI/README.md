@@ -40,3 +40,6 @@ $ ng serve
 npm install ngx-bootstrap --save
 If above command does not work use,
 npm install ngx-bootstrap -f
+
+## install TabsModule
+$ ng add ngx-bootstrap  --component tabs
