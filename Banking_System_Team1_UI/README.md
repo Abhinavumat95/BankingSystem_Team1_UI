@@ -35,3 +35,8 @@ $ npm install
 
 ## run thisproject
 $ ng serve
+
+## install ngx bootstrap
+npm install ngx-bootstrap --save
+If above command does not work use,
+npm install ngx-bootstrap -f
