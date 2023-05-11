@@ -41,7 +41,14 @@ import { AdminHeaderComponent } from './admin-header/admin-header.component';
 
 import { StaffLoginComponent } from './staff-login/staff-login.component';
 import { StaffHeaderComponent } from './staff-header/staff-header.component';
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import {MatRadioModule} from '@angular/material/radio';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import { CustomerHeaderComponent } from './customer-header/customer-header.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -76,7 +83,8 @@ import { StaffHeaderComponent } from './staff-header/staff-header.component';
     SuperAdminRegisterComponent,
     AdminHeaderComponent,
     StaffLoginComponent,
-    StaffHeaderComponent
+    StaffHeaderComponent,
+    CustomerHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +96,15 @@ import { StaffHeaderComponent } from './staff-header/staff-header.component';
     UiSwitchModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    //Below used For customerProfile
+    TabsModule.forRoot(),
+    MatRadioModule,
+    AlertModule.forRoot(),
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

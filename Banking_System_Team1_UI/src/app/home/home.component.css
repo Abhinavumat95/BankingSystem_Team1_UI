@@ -3,13 +3,13 @@
   height: 80%;
 }
 .left {
-  width: 50%; 
-  height: 60%; 
+  width: 50%;
+  height: 60%;
   float:left;
 }
 .right{
-  width: 50%; 
-  height: 60%; 
+  width: 50%;
+  height: 60%;
   float:right;
 }
 .logo{
@@ -19,7 +19,7 @@
   width: 50%;
   padding-top: 15%;
 }
-  
+
   /* Style the image inside the centered container, if needed */
  img {
     width: 350px;
@@ -74,7 +74,7 @@ form input {
     color: #FFFFFF;
     font-size: 20px;
     cursor: pointer;
-} 
+}
 .button:hover {
     background-color: #268dd7;
     color: white;

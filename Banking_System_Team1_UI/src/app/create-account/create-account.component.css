@@ -1,0 +1,80 @@
+p.title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  text-decoration: underline;
+  margin-bottom: 30px;
+}
+
+input.deposit-input {
+  width: 50%;
+  margin: auto;
+  height: 50px;
+  font-size: 24px;
+}
+
+p.select {
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+.account-type-container {
+  margin: auto;
+  width: 50%;
+  border: 1px solid grey;
+}
+
+.account-type {
+  font-size: 20px;
+  display: block;
+}
+
+
+.submit-button {
+  color: white;
+  width: 90px;
+  font-size: 20px;
+  height: 50px;
+  background-color: green;
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 100px;
+  border: none;
+}
+
+.submit-button:hover {background-color: #3e8e41}
+
+/* .custom-control-input {
+  font-size: 50px;
+} */
+.custom-control-input:checked~.custom-control-label::before {
+  border-color: #E91E63;
+  background-color: #E91E63;
+}
+
+.custom-control-input:focus~.custom-control-label::before {
+  box-shadow: none;
+}
+
+.custom-control-label {
+  cursor: pointer;
+}
+
+.custom-control {
+  margin-left: 0;
+  margin-bottom: 5px;
+
+}
+
+.custom-control label {
+  text-align: left;
+  width: 200px;
+  font-weight: 400;
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.alert-box {
+  position: fixed;
+  margin: -435px auto;
+}

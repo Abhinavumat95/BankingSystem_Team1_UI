@@ -1,1 +1,22 @@
-<p>add-beneficiary works!</p>
+<p class="title">Add Beneficiary</p>
+<form [formGroup]="beneficairyForm" (ngSubmit)="submit()">
+  <input type="text" placeholder="Enter Account Number" class="account-input" name="acc-num" formControlName="accInput"/>
+  <input type="text" placeholder="Confirm Account" class="account-input" name="acc-conf" formControlName="confInput"/>
+  <p class="select">Selct type of Account</p>
+  <div class="account-type-container">
+    <div class="custom-control custom-radio">
+      <input id="SB" type="radio" class="account-type" value="SB" formControlName="type" class="custom-control-input"/>
+      <label for="SB" class="custom-control-label">Saving Bank</label>
+    </div>
+    <div class="custom-control custom-radio">
+      <input id="CA" type="radio" class="account-type" value="CA" formControlName="type" class="custom-control-input"/>
+      <label for="CA" class="custom-control-label">Current Account</label>
+    </div>
+  </div>
+
+  <button class="submit-button" type="submit">Submit</button>
+
+</form>
+<div *ngFor="let alert of alerts" class="alert-box">
+  <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
+</div>

@@ -13,6 +13,7 @@ import { StaffViewComponent } from './staff-view/staff-view.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { AdminAuthGaurdService } from './admin-auth-gaurd.service';
 import { StaffDashboardComponent } from './staff-dashboard/staff-dashboard.component';
+import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'staffcorner', component: StaffCornerComponent},
   {path: 'adminlogin', component: SuperAdminLoginComponent},
   {path: 'adminregister', component: SuperAdminRegisterComponent},
+  {path: 'customerprofile', component: CustomerProfileComponent},
   {path: 'forgetpassword', component: ForgetPasswordComponent},
   {path: 'updatepassword', component: UpdatePasswordComponent},
   {path: 'customerregister', component: CustomerRegistrationComponent},

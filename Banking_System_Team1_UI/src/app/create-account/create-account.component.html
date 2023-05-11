@@ -1,1 +1,25 @@
-<p>create-account works!</p>
+<p class="title">Create Account Form</p>
+<form [formGroup]="accountForm" (ngSubmit)="submit()">
+  <input type="text" placeholder="Enter Initial Deposit" class="deposit-input" formControlName="deposit"/>
+  <p class="select">Selct type of Account</p>
+  <div class="account-type-container">
+    <div class="custom-control custom-radio">
+      <input id="SB" type="radio" class="account-type" value="SB" formControlName="type" class="custom-control-input"/>
+      <label for="SB" class="custom-control-label">Saving Bank</label>
+    </div>
+
+    <div class="custom-control custom-radio">
+      <input id="CA" type="radio" class="account-type" value="CA" formControlName="type" class="custom-control-input"/>
+      <label for="CA" class="custom-control-label">Current Account</label>
+    </div>
+
+  </div>
+
+  <button class="submit-button" type="submit">Submit</button>
+
+</form>
+
+<div *ngFor="let alert of alerts" class="alert-box">
+  <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
+</div>
+

@@ -1,0 +1,17 @@
+.spacer {
+  flex: 1 1 auto;
+}
+.material-symbols-outlined {
+  margin-left: 30px;
+  font-size: 30px;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 700,
+  'GRAD' 200,
+  'opsz' 48
+}
+
+
+span {
+  margin-left: 30px;
+}

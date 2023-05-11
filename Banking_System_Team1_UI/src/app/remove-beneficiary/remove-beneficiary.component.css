@@ -1,0 +1,29 @@
+.icon {
+  color: red;
+}
+
+table, td, th {
+  border: 1px solid;
+  font-size: 20px;
+}
+
+th {
+  font-weight: 800;
+}
+
+td {
+  font-weight: 400;
+}
+
+.beneficiary-table {
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 90%;
+  border-collapse: collapse;
+}
+
+
+.alert-box {
+  position: fixed;
+  margin: -435px auto;
+}

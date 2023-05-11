@@ -1,1 +1,40 @@
-<p>customer-profile works!</p>
+<app-customer-header></app-customer-header>
+<div class="row" style="display: flex;
+width: 1080px;
+height: 600px;
+line-height: 1.8;
+z-index: 1;
+background: #FFFFFF;
+margin: 100px auto 100px;
+padding: 40px;
+text-align: center;
+box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);">
+  <tabset [vertical]="true" >
+    <tab heading="Create Account">
+      <div class="component-container" style="margin-left: 30px;">
+        <app-create-account></app-create-account>
+      </div>
+    </tab>
+    <tab heading="Add Beneficiary">
+      <div class="component-container">
+        <app-add-beneficiary></app-add-beneficiary>
+      </div>
+    </tab>
+    <tab heading="Remove Beneficiary">
+      <div class="component-container">
+        <app-remove-beneficiary></app-remove-beneficiary>
+      </div>
+    </tab>
+    <tab heading="Transfer Money">
+      <div class="component-container">
+        <app-transfer-money></app-transfer-money>
+      </div>
+    </tab>
+    <tab heading="View Statement">
+      <div class="component-container">
+        <app-view-statement></app-view-statement>
+      </div>
+    </tab>
+  </tabset>
+</div>
+
