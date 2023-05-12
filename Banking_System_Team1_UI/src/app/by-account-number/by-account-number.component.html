@@ -1,1 +1,57 @@
-<p>by-account-number works!</p>
+
+  
+<div class = "middle" >
+    <div class="form">
+        <form [formGroup]="accountSearchForm" (ngSubmit)="goGetAccount()">
+            <div>
+                <input type="text" placeholder="Enter Account Number" formControlName="accountNumber">    
+            </div>
+            <br>
+            <button class="button" type="submit">GO</button><br><br>
+            </form>
+    </div>
+  </div>
+
+<!--  account detail info-->
+  <div class="row">
+    <div class="column">Ac No: {{accNumber}}</div>
+    <div class="column">Name:{{fullname}}</div>
+   <div class="column">Banlance: {{balance}}</div>
+</div>
+
+
+<div class="tableContainer" >
+    <br><br>
+    <table>
+        <tr class="row1">
+            <th></th>
+            <th style="font-size: 30px;">
+                Account Details
+            </th>
+            <th></th>
+        </tr>
+        <tr class="row2">
+            <th style="font-size: 20px;">Date</th>
+            <th style="font-size: 20px;">receiver Account Number</th>
+            <th style="font-size: 20px;">Amount</th>
+            <th style="font-size: 20px;">Cr/Db</th>
+        </tr>
+        <tr *ngFor="let acc of accountStatementData; let i = index" class="row2">
+            <td>{{acc.creationDate}}</td>
+            <td>{{acc.receiverAccountNumber}}</td>
+            <td>{{acc.amount}}</td>
+            <td>{{acc.crdbType}}</td>
+        </tr>
+    </table>
+
+
+
+    <div class="pagination">
+    <a href=" ">Previous</a >
+    <a href="#">1</a >
+    <a href="#">2</a >
+    <a href="#">3</a >
+    <a href="#">next</a >
+    </div>
+
+</div>

@@ -1,1 +1,34 @@
-<p>approve-account works!</p>
+<div class="tableContainer" > 
+    <div class="middle">
+        <div class="staffTable" >
+            <br><br>
+            <table>
+                <tr class="row1">
+                    <th></th>
+                    <th style="font-size: 15px;">
+                        Enable or Disable Account
+                    </th>
+                    <th></th>
+                </tr>
+                <tr class="row2">
+                    <th style="font-size: 15px;">Account Number</th>
+                    <th style="font-size: 15px;">Account Username</th>
+                    <th style="font-size: 15px;">Enable/ Disable</th>
+                </tr>
+                <tr *ngFor="let account of accounts; let i = index" class="row2">
+                    
+                    <td>{{account[0]}}</td>  <!--- account number-->
+                    <td>{{account[5].fullname}}</td> <!--- username -->
+                    <td>
+                        <!-- TODO: add logic in checkbox -->
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round">    
+                            </span>
+                        </label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+  </div>

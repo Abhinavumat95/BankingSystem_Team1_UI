@@ -91,40 +91,11 @@ export class StaffDashboardComponent implements OnInit{
     ]),
   })
 
-  goGetAccount(){
-    this.account.accountNumber = this.f['accountNumber'].value;
-    // this.accNum2 = this.f['accountNumber'].value;
-    // console.log(" this.accNum2: ", this.accNum2);
-
-    console.log("input accountNumber: ",this.account.accountNumber);
-    // TODO: how to render child page
-    // this.router.navigate(['/staffdashboard']);
-    // this.router.navigate(['/byaccountnumber']);
-
-    this.getAccountStatement(this.account.accountNumber); 
-
-  }
 
  
-  // API call from backend
-  getAccountStatement(accountNumber:any){
-    this.staffService.getAccountStatement(accountNumber)
-    .subscribe(data => { 
-      this.accountStatementData = data;  // result from API call
-      { { } }
-      console.log(this.accountStatementData)
-      var creationDate = this.accountStatementData[0].creationDate; // [0] is the sender
-      var amount = this.accountStatementData[0].amount;
-      console.log("creationDate: ",creationDate)
-      console.log("amount: ",amount)
-      this.showByAccTable=true
-      
-    }, error => {
-      console.log(error);
-      //this.noCustomer = true;
-    });
 
-  }
+
+  
 
 
  //<!-- END logic for BY ACCOUNT NUMBER-->  

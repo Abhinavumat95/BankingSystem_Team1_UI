@@ -11,6 +11,10 @@ export class StaffService {
   private baseUrl = 'http://localhost:8080';
   constructor(private http: HttpClient) {}
 
+  // store common variables
+
+
+
   // staff login API call
   staffLogin(Staff: object): Observable<object> {
     console.log("success");
@@ -32,16 +36,69 @@ export class StaffService {
   // TODO: receive account number as input and add to url
   // by account number API call
   // see transaction
-  getAccountStatement(accountNumber: any): Observable<object> {
+  getTransaction(accountNumber: any): Observable<object> {
+    console.log("in API getAccountStatement accountNumber: ", accountNumber)
     var staffToken = sessionStorage.getItem('StaffToken');
     var headers_object = new HttpHeaders().set("Authorization", "Bearer " + staffToken);
     const httpOptions = {
       headers: headers_object
     };
-
     console.log("success");
     return this.http.get(`${this.baseUrl}/api/staff/account/${accountNumber}`, httpOptions); 
   }
 
+
+  // get user
+  getUser(username: any): Observable<object> {
+    console.log("in API getUser username: ", username)
+    // TODO: extract below
+    var staffToken = sessionStorage.getItem('StaffToken');
+    var headers_object = new HttpHeaders().set("Authorization", "Bearer " + staffToken);
+    const httpOptions = {
+      headers: headers_object
+    };
+    console.log("success");
+    return this.http.get(`${this.baseUrl}/api/staff/customer/${username}`, httpOptions); 
+  }
+
+  // get specific account
+  getAccount(accountNumber: any): Observable<object> {
+    console.log("in API getUser accountNumber: ", accountNumber)
+    // TODO: extract below
+    var staffToken = sessionStorage.getItem('StaffToken');
+    var headers_object = new HttpHeaders().set("Authorization", "Bearer " + staffToken);
+    const httpOptions = {
+      headers: headers_object
+    };
+    console.log("success");
+    return this.http.get(`${this.baseUrl}/api/staff/account/detail/${accountNumber}`, httpOptions); 
+  }
+
+
+  // get customerInfo
+  getAllCustomerInfo(): Observable<object> {
+
+    // TODO: extract below
+    var staffToken = sessionStorage.getItem('StaffToken');
+    var headers_object = new HttpHeaders().set("Authorization", "Bearer " + staffToken);
+    const httpOptions = {
+      headers: headers_object
+    };
+    console.log("success");
+    return this.http.get(`${this.baseUrl}/api/util/customerinfos`, httpOptions); 
+  }
+
+  // transfer money
+  transferMoney(): Observable<object> {
+
+    // TODO: extract below
+    var staffToken = sessionStorage.getItem('StaffToken');
+    var headers_object = new HttpHeaders().set("Authorization", "Bearer " + staffToken);
+    const httpOptions = {
+      headers: headers_object
+    };
+    console.log("success");
+    return this.http.get(`${this.baseUrl}/api/util/customerinfos`, httpOptions); 
+  }
   
 }

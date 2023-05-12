@@ -1,1 +1,20 @@
-<p>transfer works!</p>
+<p class="title">Transfer Money</p>
+<div>
+    <form [formGroup]="accountForm" (ngSubmit)="submit()">
+        <input type="text" placeholder="Sender Account Number" class="deposit-input" formControlName="senderAcc"/>
+        <br><br>
+        <input type="text" placeholder="Receiver Account Number" class="deposit-input" formControlName="receiverAcc"/>
+        <br><br>
+        <input type="text" placeholder="Amount" class="deposit-input" formControlName="amount"/>
+        <br><br>
+        <input type="text" placeholder="Remarks" class="deposit-input" formControlName="remarks"/>
+        <br><br>
+        <button class="submit-button" type="submit">Submit</button>
+
+    </form>
+</div>
+
+<!-- <div *ngFor="let alert of alerts" class="alert-box">
+
+  <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
+</div> -->
