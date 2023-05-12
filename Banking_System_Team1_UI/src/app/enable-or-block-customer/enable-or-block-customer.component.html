@@ -23,7 +23,8 @@
                         <!-- TODO: add logic in checkbox -->
                         <label class="switch">
                             <input type="checkbox">
-                            <span class="slider round">    
+                            <span class="slider round" 
+                            (click)="enabledOrDisableCustomerMember(customer.username)">    
                             </span>
                         </label>
                     </td>

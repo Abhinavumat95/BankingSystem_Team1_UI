@@ -9,16 +9,16 @@ import { SuperAdminService } from '../super-admin.service';
   templateUrl: './admin-view.component.html',
   styleUrls: ['./admin-view.component.css']
 })
-export class AdminViewComponent implements OnInit{
+export class AdminViewComponent implements OnInit {
 
   staff: Staff = new Staff();
   submitted: any;
   staffCreated = false;
-  staffs:any;
-  staffView:any;
+  staffs: any;
+  staffView: any;
   e: any;
-  confPass:any;
-  pass:any;
+  confPass: any;
+  pass: any;
   checked = false;
   match = true;
   registerError: any;
@@ -26,6 +26,8 @@ export class AdminViewComponent implements OnInit{
 
   pages: number = 1;
 
+
+  enableDisable = new Map<any, any>();
 
   createStaffForm = new FormGroup({
 
@@ -42,7 +44,7 @@ export class AdminViewComponent implements OnInit{
       [Validators.required,
       Validators.minLength(6),
       Validators.maxLength(40)]),
-   
+
   },
   );
 
@@ -53,11 +55,11 @@ export class AdminViewComponent implements OnInit{
       Validators.minLength(6),
       Validators.maxLength(20)]),
     fullname: new FormControl('', [Validators.required]),
-   
+
   },
   );
-  
-  
+
+
 
   get f() {
     return this.createStaffForm.controls;
@@ -101,6 +103,7 @@ export class AdminViewComponent implements OnInit{
 
   viewStaff() {
 
+
     this.staff.username = this.f['username'].value;
     this.staff.fullname = this.f['fullname'].value;
     //this.superAdmin.confirmPassword = this.f['confirmPassword'].value;
@@ -117,8 +120,8 @@ export class AdminViewComponent implements OnInit{
 
   }
 
-  constructor(private superAdminService: SuperAdminService, private router: Router) { 
-    
+  constructor(private superAdminService: SuperAdminService, private router: Router) {
+
   }
 
   ngOnInit(): void {
@@ -127,9 +130,8 @@ export class AdminViewComponent implements OnInit{
     //this.isSwitchedOn = false;
   }
 
-  deleteToken()
-  {
-    sessionStorage.removeItem('AdminToken'); 
+  deleteToken() {
+    sessionStorage.removeItem('AdminToken');
     this.router.navigate(['/adminlogin']);
   }
 
@@ -137,18 +139,18 @@ export class AdminViewComponent implements OnInit{
   createStaffMember() {
     this.superAdminService.createStaff(this.staff)
       .subscribe(
-        (data: any) => console.log(data), 
+        (data: any) => console.log(data),
         (error: any) => {
           console.log(error);
           this.registerError = error.error;
-          var str = "Username: "+this.staff.username+" already exists.";
-          console.log("str = ",str);
-          console.log("Type of str = ",typeof(str));
-          console.log("Registered error = ",this.registerError);
-          console.log("Type of Registered error = ",typeof(this.registerError));
-          if(this.registerError !== str){
+          var str = "Username: " + this.staff.username + " already exists.";
+          console.log("str = ", str);
+          console.log("Type of str = ", typeof (str));
+          console.log("Registered error = ", this.registerError);
+          console.log("Type of Registered error = ", typeof (this.registerError));
+          if (this.registerError !== str) {
             this.staffCreated = true;
-          }else{
+          } else {
             this.Error = true;
           }
           console.log("Admin Created = ", this.staffCreated)
@@ -156,18 +158,22 @@ export class AdminViewComponent implements OnInit{
           console.log("Error = ", this.Error)
         });
     //this.staffCreated = true;
-    
+
     console.log("Staff Created succesfully")
   }
 
   viewStaffMembers() {
     this.superAdminService.viewStaff()
-    .subscribe(data => {
-      this.staffs = data;
-      { { } }
-      console.log(this.staffs);
+      .subscribe(data => {
+        this.staffs = data;
+        for (var s in this.staffs) {
+          this.enableDisable.set(this.staffs[s].username, this.staffs[s].enabled);
+        }
+        console.log("Data:", this.enableDisable)
+        { { } }
+        console.log(this.staffs);
 
-    }, error => console.log(error));
+      }, error => console.log(error));
   }
 
   goToCreateStaff() {
@@ -179,24 +185,29 @@ export class AdminViewComponent implements OnInit{
   }
 
   enabledOrDisableStaffMember(username: any) {
-    
-    if (this.checked === false) {
-       this.checked = true;
-       var e = true;
-       
-    }else {
-       this.checked = false;
-       var e = false;
+
+    //var check = this.staffs[0];
+    var checked = this.enableDisable.get(username);
+    //console.log("Check =", check);
+    console.log("Checked =", checked);
+    if (checked === false) {
+      checked = true;
+      var e = true;
+      this.enableDisable.set(username, e);
+    } else {
+      checked = false;
+      var e = false;
+      this.enableDisable.set(username, e);
     }
-    console.log("e = ",e)
+    console.log("e = ", e)
 
     let body = {
       username: username,
       enabled: e
     }
-    console.log("Username = ",username)
+    console.log("Username = ", username)
     this.superAdminService.enableOrDisableStaff(body)
-    .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => console.log(data), error => console.log(error));
     this.goToViewStaff();
   }
 

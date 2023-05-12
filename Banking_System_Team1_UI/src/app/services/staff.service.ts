@@ -100,5 +100,28 @@ export class StaffService {
     console.log("success");
     return this.http.get(`${this.baseUrl}/api/util/customerinfos`, httpOptions); 
   }
+
+  //
+
+
+  viewCustomer(): Observable<object> {
+    var staffToken = sessionStorage.getItem('StaffToken');
+    var headers_object = new HttpHeaders().set("Authorization", "Bearer " + staffToken);
+    const httpOptions = {
+      headers: headers_object
+    };
+    console.log("success");
+    return this.http.get(`${this.baseUrl}/api/staff/customer`, httpOptions);
+  }
+
+  enableOrDisableCustomer(data: any): Observable<object> {
+    var staffToken = sessionStorage.getItem('StaffToken');
+    var headers_object = new HttpHeaders().set("Authorization", "Bearer " + staffToken);
+    const httpOptions = {
+      headers: headers_object
+    };
+    console.log("success");
+    return this.http.put(`${this.baseUrl}/api/staff/customer`, data, httpOptions)
+  }
   
 }

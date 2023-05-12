@@ -234,17 +234,18 @@
     <div class="tableContainer" *ngIf="staffView">
         <br><br>
         <table>
-            <tr class="row1">
+            <tr class="row1" style="text-align: center;">
                 <th></th>
                 <th style="font-size: 30px;">
                     Enable or Disable Customer
                 </th>
                 <th></th>
             </tr>
+            <br>
             <tr class="row2">
-                <th style="font-size: 20px;">Staff Name</th>
-                <th style="font-size: 20px;">Staff Username</th>
-                <th style="font-size: 20px;">Enable Disable</th>
+                <th style="font-size: 20px; text-align: center;">Staff Name</th>
+                <th style="font-size: 20px; text-align: center;">Staff Username</th>
+                <th style="font-size: 20px; text-align: center;">Enable Disable</th>
             </tr>
             <tr *ngFor="let staff of staffs | paginate: { itemsPerPage: 8, currentPage: pages }" class="row2">
                 <td>{{staff.fullname}}</td>
@@ -254,14 +255,12 @@
                         <input type="checkbox">
                         <span class="slider round" (click)="enabledOrDisableStaffMember(staff.username)">
                         </span>
+
                     </label>
                 </td>
             </tr>
-            
-            
         </table>
         <div class="page">
-            <pagination-controls (pageChange)="pages = $event"
-                ></pagination-controls>
-            </div>
+            <pagination-controls (pageChange)="pages = $event"></pagination-controls>
+        </div>
     </div>
