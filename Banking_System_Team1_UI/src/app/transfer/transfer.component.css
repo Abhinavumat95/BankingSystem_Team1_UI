@@ -79,3 +79,40 @@ p.title {
     margin: -435px auto;
   }
   
+
+  .pagination {
+    display: inline-block;
+    }
+  
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  .tableContainer {
+    height: 750px;
+  }
+  table {
+    border: 1px solid red;
+    width: 960px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px 
+    rgba(0,0,0,0.1);
+  }  
+  
+  th {
+    font-size: 15px;
+  }
+  
+    
+  td {
+      border: 1px solid blue;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      text-align: center;
+      font-size: 20px;
+    }

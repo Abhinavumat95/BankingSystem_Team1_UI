@@ -1,6 +1,6 @@
-<p class="title">Transfer Money</p>
+<p class="title">Transfer</p>
 <div>
-    <form [formGroup]="accountForm" (ngSubmit)="submit()">
+    <form [formGroup]="accountForm" (ngSubmit)="submit()" *ngIf="!isDBdataExist">
         <input type="text" placeholder="Sender Account Number" class="deposit-input" formControlName="senderAcc"/>
         <br><br>
         <input type="text" placeholder="Receiver Account Number" class="deposit-input" formControlName="receiverAcc"/>
@@ -18,3 +18,51 @@
 
   <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
 </div> -->
+
+
+<div class="tableContainer" (click)="submit()" *ngIf="isDBdataExist" >
+  <br><br>
+  <table>
+    <thead>
+      <tr class="row1">
+          <th></th>
+          <th style="font-size: 30px;">
+              Transaction Details
+          </th>
+          <th></th>
+      </tr>
+      <tr class="row2">
+          <th>TransactionID</th>
+          <th>Sender Account Number</th>
+          <th>Receiver Account Number</th>
+          <th>Amount</th>
+          <th>Comments</th>
+          <th>TransactionType</th>
+          <!-- <th style="font-size: 20px;">crdbType</th> -->
+          <th>creationDate</th>
+      </tr>
+    </thead>
+      <!-- <tr *ngFor="let transaction of transactionData; let i = index" class="row2"> -->
+      <tr class="row2">
+          <td>{{transactionData.transactionID}}</td>
+          <td>{{transactionData.receiverAccountNumber}}</td>
+          <td>{{transactionData.receiverAccountNumber}}</td>
+          <td>{{transactionData.amount}}</td>
+          <td>{{transactionData.comments}}</td>
+          <td>{{transactionData.transactionType}}</td>
+          <!-- <td>{{transactionData.crdbType}}</td> -->
+          <td>{{transactionData.creationDate}}</td>
+      </tr>
+  </table>
+
+
+
+  <div class="pagination">
+  <a href=" ">Previous</a >
+  <a href="#">1</a >
+  <a href="#">2</a >
+  <a href="#">3</a >
+  <a href="#">next</a >
+  </div>
+
+</div>

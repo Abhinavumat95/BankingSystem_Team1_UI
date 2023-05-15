@@ -1,1 +1,45 @@
-<p>approve-beneficiary works!</p>
+    <div class = "middle">
+      <div class = "row">
+      <table>
+        <thead>
+          <tr class="row2">
+            <th>Newly Added Beneficiary</th>
+          </tr>
+          <tr class="row2">
+            <th >From Customer Name CustomerId</th>
+            <th >Beneficiary Name-AcNo</th>
+            <th >Beneficiary Added Date</th>
+            <th>Approve</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let beneficiary of beneficiaryData; let i = index" class="row2">
+                    
+            <td>customer1{{beneficiary.fullname}}</td>  <!-- WRONG! customer username, TODO: need to add customerID in entity -->
+            <td>{{beneficiary.accNum}}</td> <!-- account number -->
+            <td>{{beneficiary.creationDate}}</td>
+            <td>
+                <!-- TODO: add logic in checkbox -->
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round" 
+                    >    
+                    </span>
+                    <!-- <span class="slider round" 
+                    (click)="enabledOrDisableCustomerMember(customer.username)">    
+                    </span> -->
+                </label>
+            </td>
+        </tr>
+        </tbody>
+      </table>
+
+          <div class="pagination">
+            <a href=" ">Previous</a >
+            <a href="#">1</a >
+            <a href="#">2</a >
+            <a href="#">3</a >
+            <a href="#">next</a >
+          </div>
+        </div>
+    </div>

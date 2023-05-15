@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Beneficiary } from '../entity/beneficiary';
 
 
 @Injectable({
@@ -88,9 +89,9 @@ export class StaffService {
     return this.http.get(`${this.baseUrl}/api/util/customerinfos`, httpOptions); 
   }
 
-  // transfer money
-  transferMoney(): Observable<object> {
-
+  // transfer money from staff
+  staffTransfer(transactionInput:any): Observable<object> {
+    console.log("transactionInput in API call: ", transactionInput)
     // TODO: extract below
     var staffToken = sessionStorage.getItem('StaffToken');
     var headers_object = new HttpHeaders().set("Authorization", "Bearer " + staffToken);
@@ -98,10 +99,9 @@ export class StaffService {
       headers: headers_object
     };
     console.log("success");
-    return this.http.get(`${this.baseUrl}/api/util/customerinfos`, httpOptions); 
+    return this.http.put(`${this.baseUrl}/api/staff/transfer`,transactionInput, httpOptions); 
   }
 
-  //
 
 
   viewCustomer(): Observable<object> {
@@ -122,6 +122,37 @@ export class StaffService {
     };
     console.log("success");
     return this.http.put(`${this.baseUrl}/api/staff/customer`, data, httpOptions)
+  }
+
+  // get all beneficiaries need to be approved by staff
+  getAllBeneficiaryNeedApprove(): Observable<object> {
+    var staffToken = sessionStorage.getItem('StaffToken');
+    var headers_object = new HttpHeaders().set("Authorization", "Bearer " + staffToken);
+    const httpOptions = {
+      headers: headers_object
+    };
+    console.log("success");
+    return this.http.get(`${this.baseUrl}/api/staff/beneficiary`, httpOptions)
+  }
+
+  // TODO:
+  // approve beneficiary
+  addBeneficiaryToCustomer(beneficiary:Beneficiary, username:String): Observable<object> {
+    var staffToken = sessionStorage.getItem('StaffToken');
+    var headers_object = new HttpHeaders().set("Authorization", "Bearer " + staffToken);
+    const httpOptions = {
+      headers: headers_object
+    };
+    console.log("success");
+    return this.http.get(`${this.baseUrl}/api/staff/beneficiary`, httpOptions)
+  }
+
+  addAlert(alerts:any[], msgInput: string, typeInput: string) {
+    alerts.push({
+      type: typeInput,
+      msg: msgInput,
+      timeout: 5000
+    });
   }
   
 }

@@ -1,10 +1,10 @@
 
   
-<div class = "middle" >
-    <div class="form">
+<div class = "middle" *ngIf="!showByAccTable">
+    <div class="form" >
         <form [formGroup]="accountSearchForm" (ngSubmit)="goGetAccount()">
             <div>
-                <input type="text" placeholder="Enter Account Number" formControlName="accountNumber">    
+                <input type="text" class= "forminput" placeholder="Enter Account Number" formControlName="accountNumber">    
             </div>
             <br>
             <button class="button" type="submit">GO</button><br><br>
@@ -13,11 +13,26 @@
   </div>
 
 <!--  account detail info-->
-  <div class="row">
-    <div class="column">Ac No: {{accNumber}}</div>
-    <div class="column">Name:{{fullname}}</div>
-   <div class="column">Banlance: {{balance}}</div>
-</div>
+  <div class="row" *ngIf="showByAccTable">
+    <table>
+        <thead>
+            <tr class="row2">
+                <th >Account No:</th>
+                <th >Name:</th>
+                <th >Banlance:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row2">
+                <td>{{accNumber}}</td>
+                <td>customer1{{fullname}}</td>
+                <td>{{balance}}</td>
+            </tr>
+        </tbody>
+    <!-- <div class="column">Account No: {{accNumber}}</div>
+    <div class="column">Name:customer1{{fullname}}</div>
+   <div class="column">Banlance: {{balance}}</div> -->
+    </table>
 
 
 <div class="tableContainer" >
@@ -34,13 +49,13 @@
             <th style="font-size: 20px;">Date</th>
             <th style="font-size: 20px;">receiver Account Number</th>
             <th style="font-size: 20px;">Amount</th>
-            <th style="font-size: 20px;">Cr/Db</th>
+            <!-- <th style="font-size: 20px;">Cr/Db</th> -->
         </tr>
         <tr *ngFor="let acc of accountStatementData; let i = index" class="row2">
             <td>{{acc.creationDate}}</td>
             <td>{{acc.receiverAccountNumber}}</td>
             <td>{{acc.amount}}</td>
-            <td>{{acc.crdbType}}</td>
+            <!-- <td>{{acc.crdbType}}</td> -->
         </tr>
     </table>
 
@@ -54,4 +69,5 @@
     <a href="#">next</a >
     </div>
 
+</div>
 </div>
